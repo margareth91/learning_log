@@ -1,0 +1,3 @@
+Puste katalogi nie zostana uwzglednione podczas przekazywania projektu do Heroku.
+Dlatego istnienie tego pliku gwarantuje, ze katalog learning_log/static/ bedzie dodany do projektu.
+Django zbierze pliki statyczne, a nastepnie umiesci je w tym katalogu.

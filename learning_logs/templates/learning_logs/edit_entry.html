@@ -1,0 +1,18 @@
+{% extends 'learning_logs/base.html' %}
+{% load django_bootstrap5 %}
+
+{% block header %}
+<h2>Edycja wpisu:</h2>
+{% endblock header %}
+
+{% block content %}
+
+<p><a href="{% url 'topic' topic.id %}">{{ topic }}</a></p>
+
+<form action="{% url 'edit_entry' entry.id %}" method="post">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    {% bootstrap_button button_type='submit' content='Zapisz zmiany' %}
+</form>
+
+{% endblock content %}

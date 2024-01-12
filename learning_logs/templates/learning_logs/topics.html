@@ -1,0 +1,23 @@
+{% extends 'learning_logs/base.html' %}
+{% load django_bootstrap5 %}
+
+{% block header %}
+<h1>Tematy</h1>
+{% endblock header %}
+
+{% block content %}
+
+    {% for topic in topics %}
+    <div class="card">
+        <div class="card-header">
+        <h5><a href="{% url 'topic' topic.id %}">{{ topic }}</a></h5>
+        </div>
+    </div>
+    <br>
+    {% empty %}
+    Nie został jeszcze dodany żaden temat.
+    {% endfor %}
+
+<h3><a href="{% url 'new_topic' %}">Dodaj nowy temat</a></h3>
+
+{% endblock content %}

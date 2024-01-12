@@ -1,0 +1,28 @@
+{% extends 'learning_logs/base.html' %}
+{% load django_bootstrap5 %}
+
+{% block header %}
+<h2>{{ topic }}</h2>
+{% endblock header %}
+
+{% block content %}
+
+<p><a href="{% url 'new_entry' topic.id %}">Dodaj nowy wpis</a></p>
+
+    {% for entry in entries %}
+    <div class="card">
+        <div class="card-header">
+            <h5>{{ entry.date_added }}</h5>
+            <h6><a href="{% url 'edit_entry' entry.id %}">Edytuj wpis</a></h6>
+        </div>
+        <div class="card-body">
+            <p>{{ entry.text|linebreaks }}</p>
+        </div>
+    </div>
+    <br>
+    {% empty %}
+    Nie zostal jeszcze dodany zaden wpis
+    {% endfor %}
+
+
+{% endblock content %}

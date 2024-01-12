@@ -1,0 +1,52 @@
+{% load django_bootstrap5 %}
+
+<!DOCTYPE html>
+<html lang="pl ">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Learning Log</title>
+
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+</head>
+<body>
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="{% url 'index' %}">Learning Log</a>
+            <button type="button" class="navbar-toggler"
+                    data-bs-toggle="collapse" data-bs-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item"><a class="nav-link" aria-current="page" href="{% url 'topics' %}">Tematy</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                {% if user.is_authenticated %}
+                <li class="nav-item"><a class="nav-link">Witaj, {{ user.username }}</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Wyloguj</a></li>
+                {% else %}
+                <li class="nav-item"><a class="nav-link" href="{% url 'register' %}">Rejestracja</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Login</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <div class="page-header">
+        {% block header %}
+        {% endblock header %}
+    </div>
+    <div>
+        {% block content %}
+        {% endblock content %}
+    </div>
+</div>
+</body>
+</html>
